@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Notepad</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Assuming you have a CSS file -->
+  </head>
+  <body>
+    <div id="notepad">
+      <textarea id="notes" placeholder="Start typing..."></textarea>
+    </div>
+    <button id="saveBtn">Save</button>
+    <button id="clearBtn">Clear</button>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const saveBtn = document.getElementById("saveBtn");
+        const clearBtn = document.getElementById("clearBtn");
+        const notes = document.getElementById("notes");
+
+        // Load saved notes from localStorage
+        notes.value = localStorage.getItem("notes") || "";
+
+        // Save the notes to localStorage
+        saveBtn.addEventListener("click", function () {
+          localStorage.setItem("notes", notes.value);
+          alert("Notes saved!");
+        });
+
+        // Clear the notes
+        clearBtn.addEventListener("click", function () {
+          notes.value = "";
+          localStorage.removeItem("notes");
+        });
+      });
+    </script>
+  </body>
+  <style>
+    #notepad {
+      margin: 20px;
+    }
+
+    #notes {
+      width: 100%;
+      height: 300px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: "Poppins", sans-serif;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+    }
+
+    #saveBtn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    #clearBtn {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</html>
